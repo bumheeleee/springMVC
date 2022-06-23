@@ -23,8 +23,16 @@ public class RequestParamServlet extends HttpServlet {
 
         System.out.println("[전체 파라미터 조회] start");
         //request의 모든 param의 내용을 다 꺼낼 수 있다 => request.getParameterNames();
-        //Enumeration<String> requests = request.getParameterNames();
+        /*
+        Enumeration<String> parameterNames = request.getParameterNames();
+        while (parameterNames.hasMoreElements()) {
+            String paramName = parameterNames.nextElement();
+            System.out.println(paramName + "=" +
+                request.getParameter(paramName));
+         }
+         */
         //요즘 방식 paramName = key, request.getParameter(paramName) = value
+        //request.getParameter("username") -> get방식, post방식 둘다 지원을 한다.
         request.getParameterNames().asIterator()
                         .forEachRemaining(paramName -> System.out.println(paramName + "=" + request.getParameter(paramName)));
         System.out.println("[전체 파라미터 조회] end");
