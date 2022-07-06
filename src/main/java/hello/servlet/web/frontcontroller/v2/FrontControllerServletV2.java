@@ -43,7 +43,7 @@ public class FrontControllerServletV2 extends HttpServlet {
             return;
         }
 
-        //이전과 다르게 process함수를 수행하고 나면 jsp uri 주소를 반환한다.
+        //이전과 다르게 process함수를 수행하고 나면 MyView 객체를 반환한다.
         MyView view = controller.process(request, response);
         view.render(request,response);
     }
