@@ -90,6 +90,7 @@ public class BasicItemController {
     //생략하면 객체 클래스에 첫글자만 소문자로 바꿔서, 대입됨
     //ex) Item -> item
     //@PostMapping("/add")
+    //이렇게 사용하기 : 시인성에 더욱 좋다.
     public String addItemV3(@ModelAttribute Item item){
         itemRepository.save(item);
         return "/basic/item";
@@ -102,6 +103,22 @@ public class BasicItemController {
     public String addItemV4(Item item){
         itemRepository.save(item);
         return "/basic/item";
+    }
+
+
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable long itemId, Model model){
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+
+        return "/basic/editForm";
+    }
+
+
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable long itemId, @ModelAttribute Item item){
+        itemRepository.update(itemId, item);
+        return "redirect:/basic/items/{itemId}";
     }
 
 
